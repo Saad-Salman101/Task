@@ -3,31 +3,31 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
 import Layout from '../../components/Layout';
-// import data from '../../utils/data';
+import data from '../../utils/data';
 import { useEffect, useState } from 'react';
 
 export default function ProductScreen() {
   const [myproducts, setmyProducts] = useState([]);
 
-  useEffect(async()=>{
-    try {
-      const res = await fetch('https://dummyjson.com/products');
-      if (!res.ok) {
-        throw new Error(`HTTP error! status: ${res.status}`);
-      }
-      const mydata = await res.json();
-      setmyProducts(mydata.products);
-    } catch (e) {
-      console.error(e);
-    }
-  },[]);
+  // useEffect(async()=>{
+  //   try {
+  //     const res = await fetch('https://dummyjson.com/products');
+  //     if (!res.ok) {
+  //       throw new Error(`HTTP error! status: ${res.status}`);
+  //     }
+  //     const mydata = await res.json();
+  //     setmyProducts(mydata.products);
+  //   } catch (e) {
+  //     console.error(e);
+  //   }
+  // },[]);
   
 
   // console.log(myproducts)
   const { query } = useRouter();
   const { id } = query;
   // console.log(query);
-  const product = myproducts.find((x) => x.id === id);
+  const product = data.products.find((x) => x.id === id);
   if (!product) {
     return <div>Produt Not Found</div>;
   }
